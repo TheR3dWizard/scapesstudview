@@ -88,9 +88,13 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       ],
                     ),
                   ),
+                  Divider(
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).accent4,
+                  ),
                   Container(
                     width: 100.0,
-                    height: 175.0,
+                    height: 98.4,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -102,7 +106,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       width: double.infinity,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 4.0,
@@ -189,12 +193,12 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                     child: Container(
                       width: double.infinity,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 4.0,
@@ -286,7 +290,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       width: double.infinity,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 4.0,
