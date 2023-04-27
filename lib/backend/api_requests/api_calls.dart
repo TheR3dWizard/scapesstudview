@@ -228,8 +228,7 @@ class SubjectCall {
 /// Start AttendanceData Group Code
 
 class AttendanceDataGroup {
-  static String baseUrl =
-      'https://psg-scapes-backend.onrender.com/api/attendance';
+  static String baseUrl = 'https://psg-scapes-backend.onrender.com/api';
   static Map<String, String> headers = {};
   static StudAttACCall studAttACCall = StudAttACCall();
   static StudAttSCCall studAttSCCall = StudAttSCCall();
@@ -240,7 +239,7 @@ class StudAttACCall {
   Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'StudAttAC',
-      apiUrl: '${AttendanceDataGroup.baseUrl}/student/22Z209',
+      apiUrl: '${AttendanceDataGroup.baseUrl}/attendance-single-student/22Z201',
       callType: ApiCallType.GET,
       headers: {
         ...AttendanceDataGroup.headers,
@@ -260,6 +259,10 @@ class StudAttACCall {
   dynamic noClasses(dynamic response) => getJsonField(
         response,
         r'''$[0].totalClasses''',
+      );
+  dynamic className(dynamic response) => getJsonField(
+        response,
+        r'''$[0].courseName''',
       );
 }
 

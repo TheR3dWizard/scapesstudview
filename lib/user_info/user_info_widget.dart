@@ -119,27 +119,6 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/imageLogo@3x.png',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -154,10 +133,18 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Roll Number',
-                                        textAlign: TextAlign.start,
+                                        UserDataCall.rollno(
+                                          userInfoUserDataResponse.jsonBody,
+                                        ).toString(),
                                         style: FlutterFlowTheme.of(context)
-                                            .displaySmall,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 24.0,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -168,16 +155,13 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          UserDataCall.rollno(
-                                            userInfoUserDataResponse.jsonBody,
-                                          ).toString(),
+                                          'Roll Number',
+                                          textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                              .displaySmall
                                               .override(
                                                 fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                fontSize: 14.0,
                                               ),
                                         ),
                                       ],
@@ -211,27 +195,6 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/imageLogo@3x.png',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -246,10 +209,18 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Department',
-                                        textAlign: TextAlign.start,
+                                        UserDataCall.dept(
+                                          userInfoUserDataResponse.jsonBody,
+                                        ).toString(),
                                         style: FlutterFlowTheme.of(context)
-                                            .displaySmall,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 24.0,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -260,16 +231,13 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          UserDataCall.dept(
-                                            userInfoUserDataResponse.jsonBody,
-                                          ).toString(),
+                                          'Department',
+                                          textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                              .displaySmall
                                               .override(
                                                 fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                fontSize: 14.0,
                                               ),
                                         ),
                                       ],
@@ -303,27 +271,6 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/imageLogo@3x.png',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -338,10 +285,18 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Designation',
-                                        textAlign: TextAlign.start,
+                                        UserDataCall.role(
+                                          userInfoUserDataResponse.jsonBody,
+                                        ).toString(),
                                         style: FlutterFlowTheme.of(context)
-                                            .displaySmall,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 24.0,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -352,16 +307,13 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          UserDataCall.role(
-                                            userInfoUserDataResponse.jsonBody,
-                                          ).toString(),
+                                          'Designation',
+                                          textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                              .displaySmall
                                               .override(
                                                 fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                fontSize: 14.0,
                                               ),
                                         ),
                                       ],

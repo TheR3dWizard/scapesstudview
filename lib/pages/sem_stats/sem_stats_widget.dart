@@ -29,7 +29,79 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
   final _unfocusNode = FocusNode();
 
   final animationsMap = {
-    'progressBarOnPageLoadAnimation': AnimationInfo(
+    'progressBarOnPageLoadAnimation1': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-10.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'progressBarOnPageLoadAnimation2': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-10.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'progressBarOnPageLoadAnimation3': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-10.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'progressBarOnPageLoadAnimation4': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-10.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'progressBarOnPageLoadAnimation5': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-10.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'progressBarOnPageLoadAnimation6': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(-10.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
+    'progressBarOnPageLoadAnimation7': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
@@ -238,18 +310,29 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
-                      child: Builder(
-                        builder: (context) {
-                          final course = FFAppState().courses.toList();
-                          return ListView.builder(
+                      child: FutureBuilder<ApiCallResponse>(
+                        future: AttendanceDataGroup.studAttACCall.call(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  color: Color(0xC31566C6),
+                                ),
+                              ),
+                            );
+                          }
+                          final listViewStudAttACResponse = snapshot.data!;
+                          return ListView(
                             padding: EdgeInsets.zero,
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
-                            itemCount: course.length,
-                            itemBuilder: (context, courseIndex) {
-                              final courseItem = course[courseIndex];
-                              return Padding(
+                            children: [
+                              Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 8.0),
                                 child: Container(
@@ -282,7 +365,7 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                                           alignment:
                                               AlignmentDirectional(0.0, 0.0),
                                           child: Text(
-                                            courseIndex.toString(),
+                                            '1',
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium,
@@ -300,91 +383,71 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: [
-                                                FutureBuilder<ApiCallResponse>(
-                                                  future: AttendanceDataGroup
-                                                      .studAttACCall
-                                                      .call(),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50.0,
-                                                          height: 50.0,
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            color: Color(
-                                                                0xC31566C6),
-                                                          ),
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
                                                         ),
-                                                      );
-                                                    }
-                                                    final progressBarStudAttACResponse =
-                                                        snapshot.data!;
-                                                    return CircularPercentIndicator(
-                                                      percent:
-                                                          AttendanceDataGroup
-                                                                  .studAttACCall
-                                                                  .present(
-                                                                progressBarStudAttACResponse
-                                                                    .jsonBody,
-                                                              ) /
-                                                              AttendanceDataGroup
-                                                                  .studAttACCall
-                                                                  .noClasses(
-                                                                progressBarStudAttACResponse
-                                                                    .jsonBody,
-                                                              ),
-                                                      radius: 60.0,
-                                                      lineWidth: 24.0,
-                                                      animation: true,
-                                                      progressColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
                                                               .primary,
-                                                      backgroundColor:
-                                                          Color(0xFFF1F4F8),
-                                                      center: Text(
-                                                        (int present,
-                                                                int total) {
-                                                          return (present /
-                                                                      total)
-                                                                  .toString() +
-                                                              r"%";
-                                                        }(
-                                                            AttendanceDataGroup
-                                                                .studAttACCall
-                                                                .present(
-                                                              progressBarStudAttACResponse
-                                                                  .jsonBody,
-                                                            ),
-                                                            AttendanceDataGroup
-                                                                .studAttACCall
-                                                                .noClasses(
-                                                              progressBarStudAttACResponse
-                                                                  .jsonBody,
-                                                            )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Poppins',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                      ),
-                                                    ).animateOnPageLoad(
-                                                        animationsMap[
-                                                            'progressBarOnPageLoadAnimation']!);
-                                                  },
-                                                ),
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation1']!),
                                                 Text(
-                                                  courseItem,
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .titleMedium,
@@ -412,8 +475,872 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                                     ),
                                   ),
                                 ),
-                              );
-                            },
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation2']!),
+                                                Text(
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'A description of your lesson goes here...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation3']!),
+                                                Text(
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'A description of your lesson goes here...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation4']!),
+                                                Text(
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'A description of your lesson goes here...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation5']!),
+                                                Text(
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'A description of your lesson goes here...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation6']!),
+                                                Text(
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'A description of your lesson goes here...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 8.0),
+                                child: Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            '1',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                CircularPercentIndicator(
+                                                  percent:
+                                                      valueOrDefault<double>(
+                                                    AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ) /
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                    50.0,
+                                                  ),
+                                                  radius: 60.0,
+                                                  lineWidth: 24.0,
+                                                  animation: true,
+                                                  progressColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  backgroundColor:
+                                                      Color(0xFFF1F4F8),
+                                                  center: Text(
+                                                    (int present, int total) {
+                                                      return (present / total)
+                                                              .toString() +
+                                                          r"%";
+                                                    }(
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .present(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        ),
+                                                        AttendanceDataGroup
+                                                            .studAttACCall
+                                                            .noClasses(
+                                                          listViewStudAttACResponse
+                                                              .jsonBody,
+                                                        )),
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                  ),
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'progressBarOnPageLoadAnimation7']!),
+                                                Text(
+                                                  AttendanceDataGroup
+                                                      .studAttACCall
+                                                      .className(
+                                                        listViewStudAttACResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleMedium,
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 4.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'A description of your lesson goes here...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 12.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           );
                         },
                       ),
