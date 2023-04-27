@@ -12,21 +12,156 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Timetable Group Code
 
 class TimetableGroup {
-  static String baseUrl =
-      'https://psg-scapes-backend.onrender.com/api/c22z2/timetable';
+  static String baseUrl = 'https://psg-scapes-backend.onrender.com/api/';
   static Map<String, String> headers = {};
   static MondayCall mondayCall = MondayCall();
+  static MondayCopyCall mondayCopyCall = MondayCopyCall();
   static TuesdayCall tuesdayCall = TuesdayCall();
-  static WednesdayCall wednesdayCall = WednesdayCall();
-  static ThursdayCall thursdayCall = ThursdayCall();
-  static FridayCall fridayCall = FridayCall();
 }
 
 class MondayCall {
   Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'Monday',
-      apiUrl: '${TimetableGroup.baseUrl}/monday',
+      apiUrl:
+          '${TimetableGroup.baseUrl}timetable-single-day-class/Monday/22Z22',
+      callType: ApiCallType.GET,
+      headers: {
+        ...TimetableGroup.headers,
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic firstclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].1.roomCode''',
+      );
+  dynamic secondclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].2.roomCode''',
+      );
+  dynamic thirdclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].3.roomCode''',
+      );
+  dynamic fourthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].4.roomCode''',
+      );
+  dynamic fifthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].5.roomCode''',
+      );
+  dynamic sixthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].6.roomCode''',
+      );
+  dynamic seventhclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].7.roomCode''',
+      );
+  dynamic eighthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].8.roomCode''',
+      );
+  dynamic oneclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].1.classCode''',
+      );
+  dynamic twoclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].2.classCode''',
+      );
+  dynamic threeclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].3.classCode''',
+      );
+  dynamic fourclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].4.classCode''',
+      );
+  dynamic fiveclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].5.classCode''',
+      );
+  dynamic sixclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].6.classCode''',
+      );
+  dynamic sevenclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].7.classCode''',
+      );
+  dynamic eightclassname(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].8.classCode''',
+      );
+}
+
+class MondayCopyCall {
+  Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Monday Copy',
+      apiUrl:
+          '${TimetableGroup.baseUrl}timetable-single-day-class/Monday/22Z22',
+      callType: ApiCallType.GET,
+      headers: {
+        ...TimetableGroup.headers,
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic firstclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].1''',
+        true,
+      );
+  dynamic secondclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].2''',
+      );
+  dynamic thirdclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].3''',
+      );
+  dynamic fourthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].4''',
+      );
+  dynamic fifthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].5''',
+      );
+  dynamic sixthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].6''',
+      );
+  dynamic seventhclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].7''',
+      );
+  dynamic eighthclass(dynamic response) => getJsonField(
+        response,
+        r'''$.classData[0].8''',
+      );
+}
+
+class TuesdayCall {
+  Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Tuesday',
+      apiUrl:
+          '${TimetableGroup.baseUrl}timetable-single-day-class/Tuesday/22Z22',
       callType: ApiCallType.GET,
       headers: {
         ...TimetableGroup.headers,
@@ -52,78 +187,6 @@ class MondayCall {
         response,
         r'''$[0].3.subject''',
       );
-}
-
-class TuesdayCall {
-  Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Tuesday',
-      apiUrl: '${TimetableGroup.baseUrl}/tuesday',
-      callType: ApiCallType.GET,
-      headers: {
-        ...TimetableGroup.headers,
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class WednesdayCall {
-  Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Wednesday',
-      apiUrl: '${TimetableGroup.baseUrl}/wednesday',
-      callType: ApiCallType.GET,
-      headers: {
-        ...TimetableGroup.headers,
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class ThursdayCall {
-  Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Thursday',
-      apiUrl: '${TimetableGroup.baseUrl}/thursday',
-      callType: ApiCallType.GET,
-      headers: {
-        ...TimetableGroup.headers,
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class FridayCall {
-  Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Friday',
-      apiUrl: '${TimetableGroup.baseUrl}/friday',
-      callType: ApiCallType.GET,
-      headers: {
-        ...TimetableGroup.headers,
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
 }
 
 /// End Timetable Group Code
@@ -165,8 +228,7 @@ class SubjectCall {
 /// Start AttendanceData Group Code
 
 class AttendanceDataGroup {
-  static String baseUrl =
-      'https://psg-scapes-backend.onrender.com/api/attendance';
+  static String baseUrl = 'https://psg-scapes-backend.onrender.com/api';
   static Map<String, String> headers = {};
   static StudAttACCall studAttACCall = StudAttACCall();
   static StudAttSCCall studAttSCCall = StudAttSCCall();
@@ -177,7 +239,7 @@ class StudAttACCall {
   Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'StudAttAC',
-      apiUrl: '${AttendanceDataGroup.baseUrl}/student/22Z209',
+      apiUrl: '${AttendanceDataGroup.baseUrl}/attendance-single-student/22Z201',
       callType: ApiCallType.GET,
       headers: {
         ...AttendanceDataGroup.headers,
@@ -197,6 +259,10 @@ class StudAttACCall {
   dynamic noClasses(dynamic response) => getJsonField(
         response,
         r'''$[0].totalClasses''',
+      );
+  dynamic className(dynamic response) => getJsonField(
+        response,
+        r'''$[0].courseName''',
       );
 }
 

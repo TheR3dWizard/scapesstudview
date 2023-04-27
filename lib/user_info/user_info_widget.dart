@@ -88,9 +88,13 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       ],
                     ),
                   ),
+                  Divider(
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).accent4,
+                  ),
                   Container(
                     width: 100.0,
-                    height: 175.0,
+                    height: 98.4,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                     ),
@@ -102,7 +106,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       width: double.infinity,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 4.0,
@@ -115,27 +119,6 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/imageLogo@3x.png',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -150,10 +133,18 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Roll Number',
-                                        textAlign: TextAlign.start,
+                                        UserDataCall.rollno(
+                                          userInfoUserDataResponse.jsonBody,
+                                        ).toString(),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 24.0,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -164,16 +155,89 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          UserDataCall.rollno(
-                                            userInfoUserDataResponse.jsonBody,
-                                          ).toString(),
+                                          'Roll Number',
+                                          textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                              .displaySmall
                                               .override(
                                                 fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                fontSize: 14.0,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 70.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 4.0,
+                            color: Color(0x43000000),
+                            offset: Offset(0.0, 2.0),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 16.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        UserDataCall.dept(
+                                          userInfoUserDataResponse.jsonBody,
+                                        ).toString(),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 24.0,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'Department',
+                                          textAlign: TextAlign.start,
+                                          style: FlutterFlowTheme.of(context)
+                                              .displaySmall
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 14.0,
                                               ),
                                         ),
                                       ],
@@ -194,7 +258,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       width: double.infinity,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 4.0,
@@ -207,27 +271,6 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/imageLogo@3x.png',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -242,10 +285,18 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'Department',
-                                        textAlign: TextAlign.start,
+                                        UserDataCall.role(
+                                          userInfoUserDataResponse.jsonBody,
+                                        ).toString(),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 24.0,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -256,108 +307,13 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          UserDataCall.dept(
-                                            userInfoUserDataResponse.jsonBody,
-                                          ).toString(),
+                                          'Designation',
+                                          textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                              .displaySmall
                                               .override(
                                                 fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 70.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 4.0,
-                            color: Color(0x43000000),
-                            offset: Offset(0.0, 2.0),
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/imageLogo@3x.png',
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 16.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Designation',
-                                        textAlign: TextAlign.start,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 4.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          UserDataCall.role(
-                                            userInfoUserDataResponse.jsonBody,
-                                          ).toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
+                                                fontSize: 14.0,
                                               ),
                                         ),
                                       ],

@@ -57,7 +57,7 @@ class FFAppState extends ChangeNotifier {
     _courses.removeAt(_index);
   }
 
-  DateTime? _day = DateTime.fromMillisecondsSinceEpoch(1681729140000);
+  DateTime? _day = DateTime.fromMillisecondsSinceEpoch(1682600280000);
   DateTime? get day => _day;
   set day(DateTime? _value) {
     _day = _value;

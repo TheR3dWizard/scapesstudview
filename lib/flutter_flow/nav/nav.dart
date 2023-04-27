@@ -51,13 +51,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomepageWidget(),
             ),
             FFRoute(
-              name: 'Timetable',
-              path: 'timetable',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Timetable')
-                  : TimetableWidget(),
-            ),
-            FFRoute(
               name: 'Login',
               path: 'login',
               builder: (context, params) => LoginWidget(),

@@ -22,3 +22,18 @@ String? dailyTimetable(
 String? uUIDList() {
   return "some stuff";
 }
+
+String? timings(int num) {
+  List<String> Timings = [
+    "8:30 AM",
+    "9:20 AM",
+    "10:30 AM",
+    "11:20 AM",
+    "1:40 PM",
+    "2:30 PM",
+    "3:30 PM",
+    "4:20 PM",
+    "5:10 PM"
+  ];
+  return Timings[num - 1];
+}
