@@ -494,24 +494,55 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                AutoSizeText(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    getJsonField(
-                                                                      textResponse
-                                                                          .jsonBody,
-                                                                      r'''''',
-                                                                    ).toString(),
-                                                                    'Digital Design',
-                                                                  ).maybeHandleOverflow(
-                                                                    maxChars:
-                                                                        32,
-                                                                    replacement:
-                                                                        '…',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMedium,
+                                                                FutureBuilder<
+                                                                    ApiCallResponse>(
+                                                                  future: TimetableGroup
+                                                                      .mondayCall
+                                                                      .call(),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
+                                                                        child:
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            color:
+                                                                                Color(0xC31566C6),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                    final textMondayResponse =
+                                                                        snapshot
+                                                                            .data!;
+                                                                    return AutoSizeText(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        TimetableGroup
+                                                                            .mondayCall
+                                                                            .twoclassname(
+                                                                              textMondayResponse.jsonBody,
+                                                                            )
+                                                                            .toString(),
+                                                                        'Digital Design',
+                                                                      ).maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            32,
+                                                                        replacement:
+                                                                            '…',
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleMedium,
+                                                                    );
+                                                                  },
                                                                 ),
                                                                 if (responsiveVisibility(
                                                                   context:
