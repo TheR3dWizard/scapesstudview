@@ -157,7 +157,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         'Roll Number',
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
+                                            .displaySmall,
                                       ),
                                     ],
                                   ),
@@ -249,7 +249,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         'Department',
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
+                                            .displaySmall,
                                       ),
                                     ],
                                   ),
@@ -341,7 +341,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                         'Designation',
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
+                                            .displaySmall,
                                       ),
                                     ],
                                   ),

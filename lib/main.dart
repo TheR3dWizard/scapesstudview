@@ -103,7 +103,6 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'SemStats': SemStatsWidget(),
       'Homepage': HomepageWidget(),
-      'Timetable': TimetableWidget(),
       'Calendar': CalendarWidget(),
       'UserInfo': UserInfoWidget(),
     };
@@ -137,18 +136,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'Home',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.dashboard_outlined,
-              size: 24.0,
-            ),
-            activeIcon: Icon(
-              Icons.dashboard_rounded,
-              size: 32.0,
-            ),
-            label: 'Timetable',
             tooltip: '',
           ),
           BottomNavigationBarItem(

@@ -90,18 +90,9 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                 ),
               ),
               Expanded(
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.pushNamed('Timetable');
-                  },
-                  child: Text(
-                    'Timetable',
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
+                child: Text(
+                  'Timetable',
+                  style: FlutterFlowTheme.of(context).bodyMedium,
                 ),
               ),
               Expanded(

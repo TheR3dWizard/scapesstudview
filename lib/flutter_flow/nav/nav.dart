@@ -29,12 +29,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, _) => LoginWidget(),
+      errorBuilder: (context, _) => NavBarPage(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => LoginWidget(),
+          builder: (context, _) => NavBarPage(),
           routes: [
             FFRoute(
               name: 'SemStats',
@@ -49,13 +49,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'Homepage')
                   : HomepageWidget(),
-            ),
-            FFRoute(
-              name: 'Timetable',
-              path: 'timetable',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Timetable')
-                  : TimetableWidget(),
             ),
             FFRoute(
               name: 'Login',
