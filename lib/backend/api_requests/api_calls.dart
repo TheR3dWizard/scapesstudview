@@ -13,7 +13,9 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 class TimetableGroup {
   static String baseUrl = 'https://psg-scapes-backend.onrender.com/api/';
-  static Map<String, String> headers = {};
+  static Map<String, String> headers = {
+    'User-Agent': 'Flutterflow',
+  };
   static MondayCall mondayCall = MondayCall();
   static MondayCopyCall mondayCopyCall = MondayCopyCall();
   static TuesdayCall tuesdayCall = TuesdayCall();
@@ -190,40 +192,6 @@ class TuesdayCall {
 }
 
 /// End Timetable Group Code
-
-/// Start Temp API Group Code
-
-class TempAPIGroup {
-  static String baseUrl =
-      'https://psg-scapes-backend.onrender.com/api/attendance/student';
-  static Map<String, String> headers = {};
-  static SubjectCall subjectCall = SubjectCall();
-}
-
-class SubjectCall {
-  Future<ApiCallResponse> call() {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Subject',
-      apiUrl: '${TempAPIGroup.baseUrl}/22Z209',
-      callType: ApiCallType.GET,
-      headers: {
-        ...TempAPIGroup.headers,
-      },
-      params: {},
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-
-  dynamic subject(dynamic response) => getJsonField(
-        response,
-        r'''$[0].courseName''',
-      );
-}
-
-/// End Temp API Group Code
 
 /// Start AttendanceData Group Code
 
