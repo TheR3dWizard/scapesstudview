@@ -16,6 +16,7 @@ void main() async {
   await FlutterFlowTheme.initialize();
 
   final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
 
   runApp(ChangeNotifierProvider(
     create: (context) => appState,
@@ -88,7 +89,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'SemStats';
+  String _currentPageName = 'Homepage';
   late Widget? _currentPage;
 
   @override
@@ -101,10 +102,11 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'SemStats': SemStatsWidget(),
       'Homepage': HomepageWidget(),
       'Calendar': CalendarWidget(),
       'UserInfo': UserInfoWidget(),
+      'Grievances': GrievancesWidget(),
+      'SemStats': SemStatsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
@@ -122,14 +124,6 @@ class _NavBarPageState extends State<NavBarPage> {
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add_alarm_rounded,
-              size: 24.0,
-            ),
-            label: 'Sem',
-            tooltip: '',
-          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
@@ -156,6 +150,22 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'UserInfo',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.announcement,
+              size: 24.0,
+            ),
+            label: 'Grievances',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.add_alarm_rounded,
+              size: 24.0,
+            ),
+            label: 'Sem',
             tooltip: '',
           )
         ],

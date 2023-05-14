@@ -403,6 +403,11 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                               onChanged: (newValue) async {
                                 setState(() =>
                                     _model.switchListTileValue = newValue!);
+                                if (newValue!) {
+                                  setDarkModeSetting(context, ThemeMode.dark);
+                                } else {
+                                  setDarkModeSetting(context, ThemeMode.light);
+                                }
                               },
                               title: Text(
                                 'Dark Mode',

@@ -35,5 +35,5 @@ String? timings(int num) {
     "4:20 PM",
     "5:10 PM"
   ];
-  return Timings[num - 1];
+  return Timings[num];
 }

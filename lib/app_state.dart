@@ -10,20 +10,14 @@ class FFAppState extends ChangeNotifier {
     return _instance;
   }
 
-  FFAppState._internal() {
-    initializePersistedState();
-  }
+  FFAppState._internal();
 
-  Future initializePersistedState() async {
-    prefs = await SharedPreferences.getInstance();
-  }
+  Future initializePersistedState() async {}
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
-
-  late SharedPreferences prefs;
 
   String _dayofweek = 'Monday';
   String get dayofweek => _dayofweek;
@@ -61,6 +55,31 @@ class FFAppState extends ChangeNotifier {
   DateTime? get day => _day;
   set day(DateTime? _value) {
     _day = _value;
+  }
+
+  List<String> _Attendance = [
+    '[19Z101,25,20]',
+    '[19Z102, 25, 18]',
+    '[19Z103, 25, 21]',
+    '[19Z104, 25, 17]',
+    '[19Z107, 30, 28]',
+    '[19Z108, 30, 26]'
+  ];
+  List<String> get Attendance => _Attendance;
+  set Attendance(List<String> _value) {
+    _Attendance = _value;
+  }
+
+  void addToAttendance(String _value) {
+    _Attendance.add(_value);
+  }
+
+  void removeFromAttendance(String _value) {
+    _Attendance.remove(_value);
+  }
+
+  void removeAtIndexFromAttendance(int _index) {
+    _Attendance.removeAt(_index);
   }
 }
 
