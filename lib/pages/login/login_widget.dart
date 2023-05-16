@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_model.dart';
 export 'login_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -407,7 +409,52 @@ class _LoginWidgetState extends State<LoginWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onLongPress: () async {
-                          context.pushNamed('Homepage');
+                          void login() async {
+                            var rollno = _model.textController1;
+                            var tutorcode = _model.textController2;
+                            var password = _model.textController3;
+                            var uri = Uri.parse(
+                                "https://psg-scapes-backend.onrender.com/api/auth/login");
+                            Map<String, String> userdetails = {
+                              "rollnumber": "${rollno}",
+                              "tutorcode": "${tutorcode}",
+                              "password": "$password"
+                            };
+                            var response =
+                                await http.post(uri, headers: userdetails);
+                            var tokenandauth =
+                                json.decode(response.body) as Map;
+                            if (response.statusCode == 200) {
+                              var token = tokenandauth["token"];
+                              var authtext = tokenandauth["authenticationText"];
+                              context.pushNamed('Homepage');
+                            } else {
+                              void showErrorDialog(
+                                  BuildContext context, String errorMessage) {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Error'),
+                                      content: Text(errorMessage),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text('OK'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+
+                              showErrorDialog(context, "incorred password");
+                            }
+                          }
+
+                          login();
                         },
                         child: FFButtonWidget(
                           onPressed: () async {
