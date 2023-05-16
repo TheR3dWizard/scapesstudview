@@ -37,13 +37,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => LoginWidget(),
           routes: [
             FFRoute(
-              name: 'SemStats',
-              path: 'semStats',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'SemStats')
-                  : SemStatsWidget(),
-            ),
-            FFRoute(
               name: 'Homepage',
               path: 'homepage',
               builder: (context, params) => params.isEmpty
@@ -68,6 +61,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'UserInfo')
                   : UserInfoWidget(),
+            ),
+            FFRoute(
+              name: 'Grievances',
+              path: 'grievances',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'Grievances')
+                  : GrievancesWidget(),
+            ),
+            FFRoute(
+              name: 'SemStats',
+              path: 'semStats',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'SemStats')
+                  : SemStatsWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
