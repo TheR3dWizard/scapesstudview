@@ -279,6 +279,7 @@ class NewAPIGroup {
   static Map<String, String> headers = {};
   static TimetableCall timetableCall = TimetableCall();
   static AttendanceCall attendanceCall = AttendanceCall();
+  static UserinfoCall userinfoCall = UserinfoCall();
 }
 
 class TimetableCall {
@@ -330,6 +331,24 @@ class AttendanceCall {
         response,
         r'''$[0].totalClasses''',
       );
+}
+
+class UserinfoCall {
+  Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Userinfo',
+      apiUrl: '${NewAPIGroup.baseUrl}userInfo/22Z201',
+      callType: ApiCallType.GET,
+      headers: {
+        ...NewAPIGroup.headers,
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
 }
 
 /// End New API Group Code
