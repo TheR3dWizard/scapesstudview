@@ -27,79 +27,7 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
   final _unfocusNode = FocusNode();
 
   final animationsMap = {
-    'progressBarOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(-10.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'progressBarOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(-10.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'progressBarOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(-10.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'progressBarOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(-10.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'progressBarOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(-10.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'progressBarOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(-10.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'progressBarOnPageLoadAnimation7': AnimationInfo(
+    'progressBarOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
         MoveEffect(
@@ -235,7 +163,7 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: FutureBuilder<ApiCallResponse>(
-                        future: AttendanceDataGroup.studAttACCall.call(),
+                        future: NewAPIGroup.attendanceCall.call(),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -249,7 +177,7 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                               ),
                             );
                           }
-                          final listViewStudAttACResponse = snapshot.data!;
+                          final listViewAttendanceResponse = snapshot.data!;
                           return Builder(
                             builder: (context) {
                               final course =
@@ -320,16 +248,16 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                                                     CircularPercentIndicator(
                                                       percent: valueOrDefault<
                                                           double>(
-                                                        AttendanceDataGroup
-                                                                .studAttACCall
-                                                                .present(
-                                                              listViewStudAttACResponse
+                                                        NewAPIGroup
+                                                                .attendanceCall
+                                                                .numPresent(
+                                                              listViewAttendanceResponse
                                                                   .jsonBody,
                                                             ) /
-                                                            AttendanceDataGroup
-                                                                .studAttACCall
-                                                                .noClasses(
-                                                              listViewStudAttACResponse
+                                                            NewAPIGroup
+                                                                .attendanceCall
+                                                                .numClasses(
+                                                              listViewAttendanceResponse
                                                                   .jsonBody,
                                                             ),
                                                         50.0,
@@ -351,16 +279,16 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                                                                   .toString() +
                                                               r"%";
                                                         }(
-                                                            AttendanceDataGroup
-                                                                .studAttACCall
-                                                                .present(
-                                                              listViewStudAttACResponse
+                                                            NewAPIGroup
+                                                                .attendanceCall
+                                                                .numPresent(
+                                                              listViewAttendanceResponse
                                                                   .jsonBody,
                                                             ),
-                                                            AttendanceDataGroup
-                                                                .studAttACCall
-                                                                .noClasses(
-                                                              listViewStudAttACResponse
+                                                            NewAPIGroup
+                                                                .attendanceCall
+                                                                .numClasses(
+                                                              listViewAttendanceResponse
                                                                   .jsonBody,
                                                             )),
                                                         textAlign:
@@ -379,7 +307,7 @@ class _SemStatsWidgetState extends State<SemStatsWidget>
                                                       ),
                                                     ).animateOnPageLoad(
                                                         animationsMap[
-                                                            'progressBarOnPageLoadAnimation1']!),
+                                                            'progressBarOnPageLoadAnimation']!),
                                                     Text(
                                                       courseItem,
                                                       style:

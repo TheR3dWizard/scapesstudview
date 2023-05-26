@@ -48,6 +48,7 @@ class _LoginWidgetState extends State<LoginWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: Stack(
             children: [
               Image.network(

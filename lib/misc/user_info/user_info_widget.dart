@@ -56,6 +56,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           body: SafeArea(
+            top: true,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
