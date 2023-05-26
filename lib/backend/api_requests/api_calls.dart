@@ -8,6 +8,10 @@ import 'api_manager.dart';
 export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
+//Data should be taken from an API
+String clsKey = "22Z2";
+String rollNo = "22Z201";
+String day = DateFormat('EEEE').format(DateTime.now());
 
 /// Start New API Group Code
 
@@ -23,7 +27,7 @@ class TimetableCall {
   Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'timetable',
-      apiUrl: '${NewAPIGroup.baseUrl}timetable/comparison/week/22Z2',
+      apiUrl: '${NewAPIGroup.baseUrl}timetable/comparison/week/$clsKey',
       callType: ApiCallType.GET,
       headers: {
         ...NewAPIGroup.headers,
@@ -47,7 +51,7 @@ class AttendanceCall {
   Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'attendance',
-      apiUrl: '${NewAPIGroup.baseUrl}attendance/student/22Z201',
+      apiUrl: '${NewAPIGroup.baseUrl}attendance/student/$rollNo',
       callType: ApiCallType.GET,
       headers: {
         ...NewAPIGroup.headers,
@@ -74,7 +78,7 @@ class UserinfoCall {
   Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'Userinfo',
-      apiUrl: '${NewAPIGroup.baseUrl}userInfo/22Z201',
+      apiUrl: '${NewAPIGroup.baseUrl}userInfo/$rollNo',
       callType: ApiCallType.GET,
       headers: {
         ...NewAPIGroup.headers,

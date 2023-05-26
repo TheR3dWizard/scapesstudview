@@ -1,9 +1,11 @@
+import 'package:provider/provider.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -412,7 +414,43 @@ class _LoginWidgetState extends State<LoginWidget> {
                         },
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.goNamed('Homepage');
+                            void apicall() async {
+                              var rollno = _model.textController1;
+                              var password = _model.textController2;
+                              var accesscode = _model.textController3;
+                              var data = jsonEncode({
+                                "rollno": rollno,
+                                "password": password,
+                                "accesscode": accesscode
+                              });
+                              var uri = Uri.parse(
+                                  "https://psg-scapes-backend.onrender.com/api/auth");
+                              var response = await http.post(uri, body: data);
+                              if (response.statusCode == 200) {
+                                context.goNamed('Homepage');
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Error'),
+                                      content: Text(
+                                          'Wrong password. Please try again.'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text('OK'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            }
+
+                            apicall();
                           },
                           text: 'Login',
                           options: FFButtonOptions(
