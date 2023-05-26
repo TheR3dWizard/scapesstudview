@@ -65,9 +65,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Grievances',
               path: 'grievances',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Grievances')
-                  : GrievancesWidget(),
+              builder: (context, params) => GrievancesWidget(),
             ),
             FFRoute(
               name: 'SemStats',

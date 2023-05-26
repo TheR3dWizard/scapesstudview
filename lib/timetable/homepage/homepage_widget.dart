@@ -305,7 +305,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 16.0, 0.0, 0.0),
                                   child: FutureBuilder<ApiCallResponse>(
-                                    future: TimetableGroup.mondayCall.call(),
+                                    future: NewAPIGroup.timetableCall.call(),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -319,7 +319,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                           ),
                                         );
                                       }
-                                      final listViewMondayResponse =
+                                      final listViewTimetableResponse =
                                           snapshot.data!;
                                       return Builder(
                                         builder: (context) {
