@@ -47,6 +47,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -339,8 +340,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                                                 0.0, 0.0),
                                                     child: FutureBuilder<
                                                         ApiCallResponse>(
-                                                      future: TimetableGroup
-                                                          .mondayCall
+                                                      future: NewAPIGroup
+                                                          .timetableCall
                                                           .call(),
                                                       builder:
                                                           (context, snapshot) {
@@ -358,7 +359,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                                             ),
                                                           );
                                                         }
-                                                        final listViewMondayResponse =
+                                                        final listViewTimetableResponse =
                                                             snapshot.data!;
                                                         return Builder(
                                                           builder: (context) {

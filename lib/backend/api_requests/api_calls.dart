@@ -272,6 +272,68 @@ class CourseCall {
 
 /// End AttendanceData Group Code
 
+/// Start New API Group Code
+
+class NewAPIGroup {
+  static String baseUrl = 'https://psg-scapes-backend.onrender.com/api/';
+  static Map<String, String> headers = {};
+  static TimetableCall timetableCall = TimetableCall();
+  static AttendanceCall attendanceCall = AttendanceCall();
+}
+
+class TimetableCall {
+  Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'timetable',
+      apiUrl: '${NewAPIGroup.baseUrl}timetable/comparison/week/22Z2',
+      callType: ApiCallType.GET,
+      headers: {
+        ...NewAPIGroup.headers,
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic classes(dynamic response) => getJsonField(
+        response,
+        r'''$[0].periods''',
+        true,
+      );
+}
+
+class AttendanceCall {
+  Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'attendance',
+      apiUrl: '${NewAPIGroup.baseUrl}attendance/student/22Z201',
+      callType: ApiCallType.GET,
+      headers: {
+        ...NewAPIGroup.headers,
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  dynamic numPresent(dynamic response) => getJsonField(
+        response,
+        r'''$[0].totalPresent''',
+      );
+  dynamic numClasses(dynamic response) => getJsonField(
+        response,
+        r'''$[0].totalClasses''',
+      );
+}
+
+/// End New API Group Code
+
 class TimetableapiCall {
   static Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(

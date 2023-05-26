@@ -51,6 +51,13 @@ class FFAppState extends ChangeNotifier {
     _courses.removeAt(_index);
   }
 
+  void updateCoursesAtIndex(
+    int _index,
+    Function(String) updateFn,
+  ) {
+    updateFn(_courses[_index]);
+  }
+
   DateTime? _day = DateTime.fromMillisecondsSinceEpoch(1682600280000);
   DateTime? get day => _day;
   set day(DateTime? _value) {
@@ -80,6 +87,13 @@ class FFAppState extends ChangeNotifier {
 
   void removeAtIndexFromAttendance(int _index) {
     _Attendance.removeAt(_index);
+  }
+
+  void updateAttendanceAtIndex(
+    int _index,
+    Function(String) updateFn,
+  ) {
+    updateFn(_Attendance[_index]);
   }
 }
 
