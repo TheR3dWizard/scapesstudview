@@ -136,7 +136,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),
                                 child: Text(
-                                  'Email Address',
+                                  'Rollno',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -154,7 +154,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
-                                  hintText: 'rollno@psgtech.ac.in',
+                                  hintText: '22Z201',
                                   hintStyle:
                                       FlutterFlowTheme.of(context).bodySmall,
                                   enabledBorder: UnderlineInputBorder(
@@ -415,17 +415,19 @@ class _LoginWidgetState extends State<LoginWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             void apicall() async {
-                              var rollno = _model.textController1;
-                              var password = _model.textController2;
-                              var accesscode = _model.textController3;
+                              var rollno = _model.textController1.text;
+                              var password = _model.textController2.text;
+                              var accesscode = _model.textController3.text;
                               var data = jsonEncode({
-                                "rollno": rollno,
+                                "rollnumber": rollno,
                                 "password": password,
                                 "accesscode": accesscode
                               });
                               var uri = Uri.parse(
-                                  "https://psg-scapes-backend.onrender.com/api/auth");
+                                  "https://psg-scapes-backend.onrender.com/api/auth/verify");
                               var response = await http.post(uri, body: data);
+                              print(data);
+                              print(response.statusCode);
                               if (response.statusCode == 200) {
                                 context.goNamed('Homepage');
                               } else {
