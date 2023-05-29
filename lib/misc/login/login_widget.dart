@@ -418,11 +418,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                               var rollno = _model.textController1.text;
                               var password = _model.textController2.text;
                               var accesscode = _model.textController3.text;
-                              var data = jsonEncode({
+                              Map data = {
                                 "rollnumber": rollno,
                                 "password": password,
                                 "accesscode": accesscode
-                              });
+                              };
                               var uri = Uri.parse(
                                   "https://psg-scapes-backend.onrender.com/api/auth/verify");
                               var response = await http.post(uri, body: data);
