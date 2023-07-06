@@ -1,9 +1,11 @@
+import 'package:provider/provider.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -48,6 +50,7 @@ class _LoginWidgetState extends State<LoginWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
+          top: true,
           child: Stack(
             children: [
               Image.network(
@@ -133,7 +136,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 8.0, 8.0, 8.0),
                                 child: Text(
-                                  'Email Address',
+                                  'Rollno',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -151,7 +154,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 autofocus: true,
                                 obscureText: false,
                                 decoration: InputDecoration(
-                                  hintText: 'rollno@psgtech.ac.in',
+                                  hintText: '22Z201',
                                   hintStyle:
                                       FlutterFlowTheme.of(context).bodySmall,
                                   enabledBorder: UnderlineInputBorder(
@@ -411,7 +414,45 @@ class _LoginWidgetState extends State<LoginWidget> {
                         },
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.goNamed('Homepage');
+                            void apicall() async {
+                              var rollno = _model.textController1.text;
+                              var password = _model.textController2.text;
+                              var accesscode = _model.textController3.text;
+                              Map data = {
+                                "rollnumber": rollno,
+                                "password": password,
+                                "accesscode": accesscode
+                              };
+                              var uri = Uri.parse(
+                                  "https://psg-scapes-backend.onrender.com/api/auth/verify");
+                              var response = await http.post(uri, body: data);
+                              print(data);
+                              print(response.statusCode);
+                              if (response.statusCode == 200) {
+                                context.goNamed('Homepage');
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Error'),
+                                      content: Text(
+                                          'Wrong password. Please try again.'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text('OK'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            }
+
+                            apicall();
                           },
                           text: 'Login',
                           options: FFButtonOptions(

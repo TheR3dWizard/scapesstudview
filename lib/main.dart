@@ -105,10 +105,10 @@ class _NavBarPageState extends State<NavBarPage> {
       'Homepage': HomepageWidget(),
       'Calendar': CalendarWidget(),
       'UserInfo': UserInfoWidget(),
-      'Grievances': GrievancesWidget(),
       'SemStats': SemStatsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
       bottomNavigationBar: BottomNavigationBar(
@@ -150,14 +150,6 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: 'UserInfo',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.announcement,
-              size: 24.0,
-            ),
-            label: 'Grievances',
             tooltip: '',
           ),
           BottomNavigationBarItem(

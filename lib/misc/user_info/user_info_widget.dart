@@ -37,7 +37,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: UserDataCall.call(),
+      future: NewAPIGroup.userinfoCall.call(),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -51,11 +51,12 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
             ),
           );
         }
-        final userInfoUserDataResponse = snapshot.data!;
+        final userInfoUserinfoResponse = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           body: SafeArea(
+            top: true,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -80,9 +81,11 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          UserDataCall.name(
-                            userInfoUserDataResponse.jsonBody,
-                          ).toString(),
+                          NewAPIGroup.userinfoCall
+                              .name(
+                                userInfoUserinfoResponse.jsonBody,
+                              )
+                              .toString(),
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
@@ -149,10 +152,12 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  UserDataCall.rollno(
-                                                    userInfoUserDataResponse
-                                                        .jsonBody,
-                                                  ).toString(),
+                                                  NewAPIGroup.userinfoCall
+                                                      .rollno(
+                                                        userInfoUserinfoResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -231,10 +236,12 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  UserDataCall.dept(
-                                                    userInfoUserDataResponse
-                                                        .jsonBody,
-                                                  ).toString(),
+                                                  NewAPIGroup.userinfoCall
+                                                      .dept(
+                                                        userInfoUserinfoResponse
+                                                            .jsonBody,
+                                                      )
+                                                      .toString(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -313,10 +320,12 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              UserDataCall.role(
-                                                userInfoUserDataResponse
-                                                    .jsonBody,
-                                              ).toString(),
+                                              NewAPIGroup.userinfoCall
+                                                  .role(
+                                                    userInfoUserinfoResponse
+                                                        .jsonBody,
+                                                  )
+                                                  .toString(),
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
