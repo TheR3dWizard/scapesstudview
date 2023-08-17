@@ -1,20 +1,23 @@
-# psgscapes student
+# Flutter APP for the BLE Attendance Project
 
-A new Flutter project.
+The frontend for the BLE attendance project, it simply acts as a way for users to login to their accounts and has the following features
 
-## Getting Started
+## Login
 
-FlutterFlow projects are built to run on the Flutter _stable_ release.
+The login page connects to the mongodb and verifies the users and returns what role they belong to
 
-### Getting started continued:
+## Homepage
 
-This project is a starting point for a Flutter application.
+This page shows the daily timetable and what classes are to attended
 
-A few resources to get you started if this is your first Flutter project:
+## Calendar
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This page shows the timetable of all days of the week
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## User Details
+
+This page contaisn all the details of the user such as department roll number and role 
+
+## Semester Attendance
+
+This page contains the total attendance for every course in the semester
