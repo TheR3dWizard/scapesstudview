@@ -1,6 +1,6 @@
-# Flutter APP for the BLE Attendance Project
+# Flutter APP for PSG Scapes
 
-The frontend for the BLE attendance project, it simply acts as a way for users to login to their accounts and has the following features
+The frontend for PSG Scapes, it has the following features
 
 ## Login
 
@@ -16,7 +16,7 @@ This page shows the timetable of all days of the week
 
 ## User Details
 
-This page contaisn all the details of the user such as department roll number and role 
+This page contains all the details of the user such as department roll number and role 
 
 ## Semester Attendance
 
